@@ -1,3 +1,12 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    highlight: kate
+    keep_md: yes
+    self_contained: no
+    theme: cosmo
+---
 
 #Repdata-003 : Peer Assesment 1
 ##Loading and preprocessing the data
