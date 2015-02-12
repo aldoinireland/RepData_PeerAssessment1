@@ -284,9 +284,12 @@ stepsPerDay &lt;-<span class="st"> </span><span class="kw">aggregate</span>(step
 <ul>
 <li>Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)
-dayType &lt;-<span class="st"> </span>data$dayType
-<span class="kw">xyplot</span>( steps~interval |<span class="st"> </span>dayType, <span class="dt">data=</span>data, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">layout=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">dayType &lt;-<span class="st"> </span>data$dayType
+<span class="kw">library</span>(lattice)
+<span class="kw">xyplot</span>(steps ~<span class="st"> </span>interval |<span class="st"> </span>dayType, 
+       <span class="kw">aggregate</span>(steps ~<span class="st"> </span>interval +<span class="st"> </span>dayType, data, <span class="dt">FUN =</span> mean), 
+       <span class="dt">layout =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">group=</span>dayType, <span class="dt">ylab=</span><span class="st">&quot;Number of steps&quot;</span>,
+       <span class="dt">col=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>))</code></pre>
 <div class="figure">
 <img src="PA1_template_files/figure-html/unnamed-chunk-18-1.png" />
 </div>

@@ -162,7 +162,10 @@ Including all that missing data had a significant effect on the mean (1/6 the or
 
   - Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 ```{r, echo=TRUE}
-library("lattice")
 dayType <- data$dayType
-xyplot( steps~interval | dayType, data=data, type="l", layout=c(1,2))
+library(lattice)
+xyplot(steps ~ interval | dayType, 
+       aggregate(steps ~ interval + dayType, data, FUN = mean), 
+       layout = c(1, 2), type = "l", group=dayType, ylab="Number of steps",
+       col=c(4,4))
 ```
